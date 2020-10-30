@@ -26,6 +26,6 @@ class RawProductForm(forms.Form):
         if not "CFE" in title:
             raise forms.ValidationError("This is not a valid title. Title should contain CFE")
         return title
-    
+
 
 

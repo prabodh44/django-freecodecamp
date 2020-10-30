@@ -34,7 +34,13 @@ def product_create_view(request):
     #     'form' : form,
     # }
 
-    form = RawProductForm(request.POST or None)
+    initial_data = {
+        'title' : 'this is the initial title',
+    }
+
+    obj = Products.objects.get(id=1)
+    print(obj.title)
+    form = ProductForm(request.POST or None, instance=obj)
     if form.is_valid():
         form.save()
         form = ProductForm()
