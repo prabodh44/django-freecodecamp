@@ -25,15 +25,27 @@ def product_create_view(request):
     # print("name " + name)
 
 
+    # FORM WIDGETS CODE
+    # form = RawProductForm(request.POST)
+    # if form.is_valid():
+    #     print(form.cleaned_data)
+    #     Products.objects.create(**form.cleaned_data)
+    # context = {
+    #     'form' : form,
+    # }
 
-    form = RawProductForm(request.POST)
+    form = RawProductForm(request.POST or None)
     if form.is_valid():
-        print(form.cleaned_data)
-        Products.objects.create(**form.cleaned_data)
+        form.save()
+        form = ProductForm()
+
     context = {
         'form' : form,
     }
     return render(request, "products/product_create.html", context)
+
+
+
 
 
 def product_detail_view(request):
